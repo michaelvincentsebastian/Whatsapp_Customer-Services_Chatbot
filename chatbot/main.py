@@ -1,23 +1,28 @@
+from fastapi import FastAPI, Request, Form
+from gpt_chat import chat_with_bot
+from database import save_message
 import os
 from dotenv import load_dotenv
-import openai
 
-load_dotenv()  # baca file .env
+load_dotenv()
+app = FastAPI()
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+@app.post("/webhook")
+async def whatsapp_webhook(
+    Body: str = Form(...),
+    From: str = Form(...)
+):
+    user_message = Body
+    user_number = From
 
-def chat_with_bot(prompt):
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "Kamu adalah asisten pintar yang membantu pengguna dengan pertanyaan seputar [topikmu]."},
-            {"role": "user", "content": prompt}
-        ]
-    )
-    return response['choices'][0]['message']['content']
+    print(f"Pesan dari {user_number}: {user_message}")
 
-while True:
-    user_input = input("You: ")
-    if user_input.lower() == "exit":
-        break
-    print("Bot:", chat_with_bot(user_input))
+    # Proses dengan OpenAI
+    bot_reply = chat_with_bot(user_message)
+
+    # Simpan ke MongoDB
+    save_message(user_number, "user", user_message)
+    save_message(user_number, "bot", bot_reply)
+
+    # Kirim balasan kembali
+    return f"<Response><Message>{bot_reply}</Message></Response>"
