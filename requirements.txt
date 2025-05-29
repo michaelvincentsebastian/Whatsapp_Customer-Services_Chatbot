@@ -1,5 +1,4 @@
 fastapi
 uvicorn
-python-dotenv
-openai
-pymongo
+python-dotenv  # Masih bisa berguna jika kamu pakai .env untuk config lain
+ollama
