@@ -1,4 +1,4 @@
 fastapi
 uvicorn
-python-dotenv  # Masih bisa berguna jika kamu pakai .env untuk config lain
-ollama
+python-dotenv
+requests
