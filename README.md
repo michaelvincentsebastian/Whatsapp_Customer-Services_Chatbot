@@ -16,6 +16,7 @@ Proyek ini adalah API chatbot backend ringan yang dibangun dengan FastAPI dan di
 - 💻 RAM-friendly, ideal for low-spec laptops
 - 🔄 Easily extendable to WhatsApp Business API (e.g. Twilio, Meta)
 
+
 - 📦 Struktur FastAPI modular
 - 🌐 Titik akhir webhook untuk penanganan pesan
 - 🧠 Menggunakan API Groq dengan SDK yang kompatibel dengan OpenAI
