@@ -1,23 +1,17 @@
-# Abaikan file environment
 .env
 
-# Abaikan cache Python
 __pycache__/
 *.py[cod]
 *.pyo
 
-# Abaikan file editor / sistem
 .vscode/
 .DS_Store
 Thumbs.db
 
-# Abaikan file log/debug jika ada
 *.log
 
-# Abaikan file model dari Ollama (jika sempat digunakan kembali)
 .ollama/
 
-# Abaikan virtual environment (jika ada)
 venv/
 env/
 
